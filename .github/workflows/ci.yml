@@ -16,7 +16,7 @@ jobs:
       - name: Instalar Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 18.18.0
 
       - name: Instalar dependências
         run: npm install
@@ -25,7 +25,7 @@ jobs:
         run: npx cypress run --browser electron
 
       - name: Instalar Allure CLI
-        run: npm install -g allure-commandline --save-dev
+        run: npm install -g allure-commandline
 
       - name: Gerar relatório Allure
         run: npm run report:generate
@@ -35,5 +35,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-
-      
