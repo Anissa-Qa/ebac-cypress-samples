@@ -18,19 +18,22 @@ jobs:
         with:
           node-version: 18
 
-      - name: Instalar dependências 
+      - name: Instalar dependências
         run: npm install
-      
+
       - name: Executar testes Cypress
-        run: npx cypress run
+        run: npx cypress run --browser electron
+
+      - name: Instalar Allure CLI
+        run: npm install -g allure-commandline --save-dev
 
       - name: Gerar relatório Allure
         run: npm run report:generate
 
-      - name: Publicar relatório no Ghub
+      - name: Publicar relatório no GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
 
-        
+      
